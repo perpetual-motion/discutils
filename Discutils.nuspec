@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Discutils</id>
+    <version>0.11.0.1</version>
+    <title>Discutils</title>
+    <authors>Kenneth Bell</authors>
+    <owners>Garrett Serack</owners>
+    <licenseUrl>http://discutils.codeplex.com/license</licenseUrl>
+    <projectUrl>http://discutils.codeplex.com</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <summary>DiscUtils is a .NET library to read and write ISO files and Virtual Machine disk files (VHD, VDI, XVA, VMDK, etc). DiscUtils is developed in C# with no native code (or P/Invoke).</summary>
+    <description>Implementation of the ISO, UDF, FAT and NTFS file systems is now fairly stable. VHD, XVA, VMDK and VDI disk formats are implemented, as well as read/write Registry support. The library also includes a simple iSCSI initiator, for accessing disks via iSCSI and an NFS client implementation.
+    </description>
+    <releaseNotes>Initial Build of the new Discutils package.</releaseNotes>
+    <copyright>Copyright 2012-2013</copyright>
+    <tags>DiscUtils, VHD, VDI, XVA, VMDK, ISO, NTFS, EXT2FS</tags>
+  </metadata>
+  <files>
+    <file src="output\v40\AnyCPU\Release\bin\DiscUtils.Common.dll" target="lib\net40" /> 
+    <file src="output\v40\AnyCPU\Release\bin\DiscUtils.dll" target="lib\net40" /> 
+    <file src="output\v40\AnyCPU\Release\bin\DiscUtils.Common.pdb" target="lib\net40" /> 
+    <file src="output\v40\AnyCPU\Release\bin\DiscUtils.pdb" target="lib\net40" /> 
+    <file src="output\v40\AnyCPU\Release\bin\DiscUtils.Common.xml" target="lib\net40" /> 
+    <file src="output\v40\AnyCPU\Release\bin\DiscUtils.xml" target="lib\net40" />
+    
+    <file src="output\v40\AnyCPU\Release\bin\DiscUtils.Common.dll" target="tools" /> 
+    <file src="output\v40\AnyCPU\Release\bin\DiscUtils.dll" target="tools" /> 
+    <file src="output\v40\AnyCPU\Release\bin\DiscUtils.MSBuild.dll" target="tools" /> 
+    <file src="output\v40\AnyCPU\Release\bin\DiscUtils.PowerShell.dll" target="tools" /> 
+    <file src="output\v40\AnyCPU\Release\bin\DiscUtils.Common.xml" target="tools" /> 
+    <file src="output\v40\AnyCPU\Release\bin\DiscUtils.xml" target="tools" /> 
+    <file src="output\v40\AnyCPU\Release\bin\DiscUtils.MSBuild.xml" target="tools" /> 
+    <file src="output\v40\AnyCPU\Release\bin\DiscUtils.PowerShell.xml" target="tools" />   
+    
+    <file src="output\v40\AnyCPU\Release\bin\DiscUtils.Format.ps1xml" target="tools" /> 
+    <file src="output\v40\AnyCPU\Release\bin\DiscUtils.Types.ps1xml" target="tools" /> 
+    <file src="output\v40\AnyCPU\Release\bin\DiscUtils.psd1" target="tools" /> 
+    
+    <file src="output\v40\AnyCPU\Release\bin\BCDDump.exe" target="tools" /> 
+    <file src="output\v40\AnyCPU\Release\bin\DiskClone.exe" target="tools" /> 
+    <file src="output\v40\AnyCPU\Release\bin\DiskDump.exe" target="tools" /> 
+    <file src="output\v40\AnyCPU\Release\bin\ExternalFileSystem.exe" target="tools" /> 
+    <file src="output\v40\AnyCPU\Release\bin\FileExtract.exe" target="tools" /> 
+    <file src="output\v40\AnyCPU\Release\bin\FileRecover.exe" target="tools" /> 
+    <file src="output\v40\AnyCPU\Release\bin\iSCSIBrowse.exe" target="tools" /> 
+    <file src="output\v40\AnyCPU\Release\bin\ISOCreate.exe" target="tools" /> 
+    <file src="output\v40\AnyCPU\Release\bin\NTFSDump.exe" target="tools" /> 
+    <file src="output\v40\AnyCPU\Release\bin\OSClone.exe" target="tools" /> 
+    <file src="output\v40\AnyCPU\Release\bin\VHDCreate.exe" target="tools" /> 
+    <file src="output\v40\AnyCPU\Release\bin\VHDDump.exe" target="tools" /> 
+    <file src="output\v40\AnyCPU\Release\bin\VirtualDiskConvert.exe" target="tools" /> 
+    <file src="output\v40\AnyCPU\Release\bin\VolInfo.exe" target="tools" /> 
+</files>
+</package>
