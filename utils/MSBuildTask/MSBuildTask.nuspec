@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<package >
+  <metadata>
+    <id>DiscUtils.MSBuildTask</id>
+    <version>$version$</version>
+    <title>Discutils</title>
+    <authors>Kenneth Bell</authors>
+    <owners>Garrett Serack</owners>
+    <licenseUrl>http://discutils.codeplex.com/license</licenseUrl>
+    <projectUrl>http://discutils.codeplex.com</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <summary>Allow to creating ISO image file from output files in build process powered by DiscUtils.</summary>
+    <description>
+      When build your project after installed this package, you can see .iso image file in output folder that contains all of output files.
+    </description>
+    <releaseNotes>Initial Build of the new DiscUtils.MSBuildTask package.</releaseNotes>
+    <copyright>Copyright 2012-2013</copyright>
+    <tags>DiscUtils, ISO, MSBuild</tags>
+  </metadata>
+
+  <files>
+    <file src="..\..\output\v40\AnyCPU\$configuration$\bin\DiscUtils.dll" target="build" />
+    <file src="..\..\output\v40\AnyCPU\$configuration$\bin\DiscUtils.pdb" target="build" />
+    <file src="..\..\output\v40\AnyCPU\$configuration$\bin\DiscUtils.xml" target="build" />
+    <file src="..\..\output\v40\AnyCPU\$configuration$\bin\DiscUtils.MSBuild.dll" target="build" />
+    <file src="..\..\output\v40\AnyCPU\$configuration$\bin\DiscUtils.MSBuild.pdb" target="build" />
+    <file src="..\..\output\v40\AnyCPU\$configuration$\bin\DiscUtils.MSBuild.xml" target="build" />
+    <file src="DiscUtils.MSBuildTask.targets" target="build" />
+  </files>
+</package>
