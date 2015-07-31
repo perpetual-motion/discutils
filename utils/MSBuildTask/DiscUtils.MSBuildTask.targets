@@ -7,10 +7,10 @@
     <IsoRemoveRoots Condition=" '$(IsoRemoveRoots)' == '' ">$(OutputPath)</IsoRemoveRoots>
     <IsoUseJoliet Condition=" '$(IsoUseJoliet)' == '' ">true</IsoUseJoliet>
   </PropertyGroup>
-  <ItemGroup Condition=" '$(DisableDefaultIsoFiles)' == '' ">
-    <IsoFiles Include="$(OutputPath)**\*" Exclude="**\*.iso" />
-  </ItemGroup>
   <Target Name="BuildIso" AfterTargets="AfterBuild" Condition=" '$(DisableDefaultBuildIsoTarget)' == '' ">
+    <ItemGroup Condition=" '$(DisableDefaultIsoFiles)' == '' ">
+      <IsoFiles Include="$(OutputPath)**\*" Exclude="**\*.iso" />
+    </ItemGroup>
     <CreateIso FileName="$(IsoFileName)" VolumeLabel="$(IsoVolumeLabel)" SourceFiles="@(IsoFiles)" RemoveRoots="$(IsoRemoveRoots)" UseJoliet="$(IsoUseJoliet)" />
   </Target>
 </Project>

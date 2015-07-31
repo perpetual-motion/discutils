@@ -59,6 +59,9 @@ If this property is defined with any text value, the default definition of files
 You should defined `<ItemGroup>` node that has `<IsoFiles>` node instead of default settings.  
 (`IsoFiles` items are including .iso image file.)
 
+**NOTICE**  
+Custom definition of `<IsoFiles>` should define at between `AfterBuild` and `BuildIso` targets (see also example).
+
 **DisableDefaultBuildIsoTarget**  
 If this property is defined with any text value, the default build task that creating .iso image file is disabled.
 
@@ -72,10 +75,13 @@ If this property is defined with any text value, the default build task that cre
   <IsoUseJoliet>false</IsoUseJoliet>
   <DisableDefaultIsoFiles>true</DisableDefaultIsoFiles>
 </PropertyGroup>
-<ItemGroup>
-  <!-- include .exe file only! -->
-  <IsoFile Include="$(OutputPath)**\*.exe" Exclude="**\*.iso" />
-</ItemGroup>
+
+<Target Name="customIsoFiles" BeforeTargets="BuildIso" AfterTargets="AfterBuild">
+  <ItemGroup>
+    <!-- include .exe file only! -->
+    <IsoFiles Include="$(OutputPath)**\*.exe" Exclude="**\*.iso" />
+  </ItemGroup>
+</Target>
 <Import Project="..\packages\DiscUtils.MSBuildTask.0.11.0.0\build\DiscUtils.MSBuildTask.targets" Condition="Exists('..\packages\DiscUtils.MSBuildTask.0.11.0.0\build\DiscUtils.MSBuildTask.targets')" />
 ...
 ```
