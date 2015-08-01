@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="All" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <UsingTask AssemblyFile="DiscUtils.MSBuild.dll" TaskName="CreateIso" />
+  <PropertyGroup>
+    <IsoFileName Condition=" '$(IsoFileName)' == '' ">$(OutputPath)$(TargetName).iso</IsoFileName>
+    <IsoVolumeLabel Condition=" '$(IsoVolumeLabel)' == '' "></IsoVolumeLabel>
+    <IsoRemoveRoots Condition=" '$(IsoRemoveRoots)' == '' ">$(OutputPath)</IsoRemoveRoots>
+    <IsoUseJoliet Condition=" '$(IsoUseJoliet)' == '' ">true</IsoUseJoliet>
+  </PropertyGroup>
+  <Target Name="BuildIso" AfterTargets="AfterBuild" Condition=" '$(DisableDefaultBuildIsoTarget)' == '' ">
+    <ItemGroup Condition=" '$(DisableDefaultIsoFiles)' == '' ">
+      <IsoFiles Include="$(OutputPath)**\*" Exclude="**\*.iso" />
+    </ItemGroup>
+    <CreateIso FileName="$(IsoFileName)" VolumeLabel="$(IsoVolumeLabel)" SourceFiles="@(IsoFiles)" RemoveRoots="$(IsoRemoveRoots)" UseJoliet="$(IsoUseJoliet)" />
+  </Target>
+</Project>

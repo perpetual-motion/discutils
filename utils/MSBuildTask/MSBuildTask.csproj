@@ -12,12 +12,13 @@
     <AssemblyName>DiscUtils.MSBuild</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-<SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir></PropertyGroup><Import Project="$(SolutionDir)\Discutils.sln.props" Condition="Exists('$(SolutionDir)\Discutils.sln.props')" />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
+  </PropertyGroup>
+  <Import Project="$(SolutionDir)\Discutils.sln.props" Condition="Exists('$(SolutionDir)\Discutils.sln.props')" />
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -25,14 +26,12 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'SignedRelease|AnyCPU'">
-    
     <DefineConstants>TRACE</DefineConstants>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
@@ -43,7 +42,6 @@
     <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release %28StyleCop%29|AnyCPU'">
-    
     <DefineConstants>TRACE</DefineConstants>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
@@ -72,6 +70,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="DiscUtils.MSBuildTask.targets">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="MSBuildTask.nuspec">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="README.md" />
     <None Include="TaskTest.bat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -87,6 +92,16 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <TargetAssemblyInfo>$([System.IO.File]::ReadAllText("$(SolutionDir)Version.cs"))</TargetAssemblyInfo>
+    <TargetAssemblyVersion>$([System.Text.RegularExpressions.Regex]::Match($(TargetAssemblyInfo),'\[assembly: AssemblyVersion\("(?&lt;mj&gt;\d+)\.(\d+)\.(\d+)\.(\d+)').Value.Remove(0,28))</TargetAssemblyVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>if "$(ConfigurationName)" == "Debug" goto END
+pushd "$(ProjectDir)"
+"$(SolutionDir)nuget.exe" pack "$(ProjectName).nuspec" -o $(OutDir) -NoPackageAnalysis -Prop Configuration=$(ConfigurationName);Platform=AnyCPU;version=$(TargetAssemblyVersion)
+:END</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
